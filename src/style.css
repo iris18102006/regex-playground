@@ -1,0 +1,130 @@
+:root {
+  --paper: #f2f4f8;
+  --ink: #161a26;
+  --muted: #5d6578;
+  --line: #cfd5e2;
+  --cobalt: #2f4bff;
+  --hit-a: #ffd27a;
+  --hit-b: #8fe3d4;
+  --bad: #c62839;
+  --mono: ui-monospace, "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #12151f;
+    --ink: #e8ebf5;
+    --muted: #8d95aa;
+    --line: #2b3144;
+    --cobalt: #7f93ff;
+    --hit-a: #8a6a1c;
+    --hit-b: #1f6b60;
+    --bad: #ff6b7a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--mono);
+}
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+h1 { font-size: 1.4rem; font-weight: 500; margin: 0 0 1.5rem; }
+
+.pattern-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+}
+.pattern-row:focus-within { border-color: var(--cobalt); }
+
+.slash { color: var(--cobalt); font-size: 1.3rem; }
+
+#pattern {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.1rem;
+  padding: 14px 0;
+}
+
+.flags { display: flex; gap: 4px; }
+.flag input { position: absolute; opacity: 0; pointer-events: none; }
+.flag span {
+  display: inline-block;
+  width: 28px;
+  text-align: center;
+  padding: 4px 0;
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+.flag input:checked + span { background: var(--cobalt); color: var(--paper); }
+.flag input:focus-visible + span { outline: 2px solid var(--cobalt); outline-offset: 2px; }
+
+.error { min-height: 1.4rem; margin: 8px 0; color: var(--bad); font-size: 0.85rem; }
+
+.editor {
+  position: relative;
+  height: 260px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.editor:focus-within { border-color: var(--cobalt); }
+
+/* backdrop and textarea MUST share these exact metrics or the highlights drift */
+.layer {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 14px;
+  border: 0;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: auto;
+}
+
+#backdrop { color: transparent; pointer-events: none; }
+#backdrop mark { color: transparent; border-radius: 3px; }
+#backdrop mark.m0 { background: var(--hit-a); }
+#backdrop mark.m1 { background: var(--hit-b); }
+
+#text {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+}
+
+.count { margin: 1.25rem 0 0.5rem; color: var(--muted); font-size: 0.85rem; }
+
+.matches { list-style: none; margin: 0; padding: 0; }
+.matches li {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+.matches .group { color: var(--muted); padding-left: 1.5rem; font-size: 0.82rem; }

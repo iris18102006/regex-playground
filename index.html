@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regex playground</title>
+  </head>
+  <body>
+    <main>
+      <h1>Regex playground</h1>
+
+      <section class="pattern-row">
+        <span class="slash">/</span>
+        <input id="pattern" type="text" value="(\w+)@(\w+)\.com" spellcheck="false" autocomplete="off" aria-label="Regex pattern" />
+        <span class="slash">/</span>
+        <div class="flags" role="group" aria-label="Flags">
+          <label class="flag" title="global"><input type="checkbox" value="g" checked /><span>g</span></label>
+          <label class="flag" title="ignore case"><input type="checkbox" value="i" /><span>i</span></label>
+          <label class="flag" title="multiline"><input type="checkbox" value="m" /><span>m</span></label>
+          <label class="flag" title="dotAll"><input type="checkbox" value="s" /><span>s</span></label>
+          <label class="flag" title="unicode"><input type="checkbox" value="u" /><span>u</span></label>
+        </div>
+      </section>
+
+      <p id="error" class="error" role="alert"></p>
+
+      <section class="editor">
+        <div id="backdrop" class="layer" aria-hidden="true"></div>
+        <textarea id="text" class="layer" spellcheck="false" aria-label="Test text">hey, mail iris@gmail.com or aleks@mail.com
+ignore this one: nobody@site.org
+IRIS@GMAIL.COM (try the i flag)</textarea>
+      </section>
+
+      <p id="count" class="count"></p>
+      <ul id="matches" class="matches"></ul>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
