@@ -8,12 +8,14 @@
   <body>
     <main>
       <h1>Regex playground</h1>
-<select id="preset" aria-label="Preset patterns">
-  <option value="">presets...</option>
-  <option value="[\w.+-]+@[\w-]+\.[\w.]+">email</option>
-  <option value="https?:\/\/[^\s]+">url</option>
-  <option value="#(?:[0-9a-fA-F]{3}){1,2}\b">hex color</option>
-</select>
+
+      <select id="preset" aria-label="Preset patterns">
+        <option value="">presets...</option>
+        <option value="[\w.+-]+@[\w-]+\.[\w.]+">email</option>
+        <option value="https?:\/\/[^\s]+">url</option>
+        <option value="#(?:[0-9a-fA-F]{3}){1,2}\b">hex color</option>
+      </select>
+
       <section class="pattern-row">
         <span class="slash">/</span>
         <input id="pattern" type="text" value="(\w+)@(\w+)\.com" spellcheck="false" autocomplete="off" aria-label="Regex pattern" />
@@ -34,6 +36,11 @@
         <textarea id="text" class="layer" spellcheck="false" aria-label="Test text">hey, mail iris@gmail.com or aleks@mail.com
 ignore this one: nobody@site.org
 IRIS@GMAIL.COM (try the i flag)</textarea>
+      </section>
+
+      <section class="replace">
+        <input id="replace" type="text" placeholder="replace with, e.g. $2 at $1" spellcheck="false" autocomplete="off" aria-label="Replacement" />
+        <pre id="replaced" class="replaced"></pre>
       </section>
 
       <p id="count" class="count"></p>

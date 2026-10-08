@@ -9,6 +9,9 @@ const backdrop = $<HTMLDivElement>('backdrop');
 const errorEl = $<HTMLParagraphElement>('error');
 const countEl = $<HTMLParagraphElement>('count');
 const listEl = $<HTMLUListElement>('matches');
+const presetEl = $<HTMLSelectElement>('preset');
+const replaceEl = $<HTMLInputElement>('replace');
+const replacedEl = $<HTMLPreElement>('replaced');
 const flagEls = document.querySelectorAll<HTMLInputElement>('.flag input');
 
 function currentFlags(): string {
@@ -51,6 +54,7 @@ function update() {
     errorEl.textContent = res.error;
     backdrop.innerHTML = renderHighlighted(text, []);
     countEl.textContent = '';
+    replacedEl.textContent = '';
     listEl.replaceChildren();
     return;
   }
@@ -60,6 +64,9 @@ function update() {
   backdrop.innerHTML = renderHighlighted(text, matches);
   countEl.textContent = `${matches.length} match${matches.length === 1 ? '' : 'es'}`;
   renderList(matches);
+
+  const re = flags.includes('g') ? res.re : new RegExp(res.re.source, flags);
+  replacedEl.textContent = text.replace(re, replaceEl.value);
 }
 
 textEl.addEventListener('scroll', () => {
@@ -68,13 +75,13 @@ textEl.addEventListener('scroll', () => {
 });
 patternEl.addEventListener('input', update);
 textEl.addEventListener('input', update);
+replaceEl.addEventListener('input', update);
 flagEls.forEach((f) => f.addEventListener('change', update));
 
-update();
-
-const presetEl = $<HTMLSelectElement>('preset');
 presetEl.addEventListener('change', () => {
   if (!presetEl.value) return;
   patternEl.value = presetEl.value;
   update();
 });
+
+update();

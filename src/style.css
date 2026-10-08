@@ -40,6 +40,17 @@ main {
 
 h1 { font-size: 1.4rem; font-weight: 500; margin: 0 0 1.5rem; }
 
+#preset {
+  margin-bottom: 10px;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 0.85rem;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
 .pattern-row {
   display: flex;
   align-items: center;
@@ -89,7 +100,6 @@ h1 { font-size: 1.4rem; font-weight: 500; margin: 0 0 1.5rem; }
 }
 .editor:focus-within { border-color: var(--cobalt); }
 
-/* backdrop and textarea MUST share these exact metrics or the highlights drift */
 .layer {
   position: absolute;
   inset: 0;
@@ -119,6 +129,29 @@ h1 { font-size: 1.4rem; font-weight: 500; margin: 0 0 1.5rem; }
   color: var(--ink);
 }
 
+.replace { margin-top: 1rem; }
+.replace input {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: 0;
+}
+.replace input:focus { border-color: var(--cobalt); }
+.replaced {
+  margin: 8px 0 0;
+  padding: 12px 14px;
+  min-height: 2.4rem;
+  white-space: pre-wrap;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--cobalt) 8%, transparent);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
 .count { margin: 1.25rem 0 0.5rem; color: var(--muted); font-size: 0.85rem; }
 
 .matches { list-style: none; margin: 0; padding: 0; }
@@ -128,15 +161,3 @@ h1 { font-size: 1.4rem; font-weight: 500; margin: 0 0 1.5rem; }
   font-size: 0.9rem;
 }
 .matches .group { color: var(--muted); padding-left: 1.5rem; font-size: 0.82rem; }
-
-
-#preset {
-  margin-bottom: 10px;
-  padding: 6px 8px;
-  font: inherit;
-  font-size: 0.85rem;
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-}
