@@ -8,7 +8,12 @@
   <body>
     <main>
       <h1>Regex playground</h1>
-
+<select id="preset" aria-label="Preset patterns">
+  <option value="">presets...</option>
+  <option value="[\w.+-]+@[\w-]+\.[\w.]+">email</option>
+  <option value="https?:\/\/[^\s]+">url</option>
+  <option value="#(?:[0-9a-fA-F]{3}){1,2}\b">hex color</option>
+</select>
       <section class="pattern-row">
         <span class="slash">/</span>
         <input id="pattern" type="text" value="(\w+)@(\w+)\.com" spellcheck="false" autocomplete="off" aria-label="Regex pattern" />

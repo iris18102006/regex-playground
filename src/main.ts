@@ -71,3 +71,10 @@ textEl.addEventListener('input', update);
 flagEls.forEach((f) => f.addEventListener('change', update));
 
 update();
+
+const presetEl = $<HTMLSelectElement>('preset');
+presetEl.addEventListener('change', () => {
+  if (!presetEl.value) return;
+  patternEl.value = presetEl.value;
+  update();
+});
