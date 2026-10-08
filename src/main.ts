@@ -18,6 +18,28 @@ function currentFlags(): string {
   return [...flagEls].filter((f) => f.checked).map((f) => f.value).join('');
 }
 
+function saveToHash() {
+  const params = new URLSearchParams({
+    p: patternEl.value,
+    f: currentFlags(),
+    t: textEl.value,
+    r: replaceEl.value,
+  });
+  history.replaceState(null, '', '#' + params.toString());
+}
+
+function loadFromHash() {
+  const params = new URLSearchParams(location.hash.slice(1));
+  if (!params.has('p')) return;
+  patternEl.value = params.get('p') ?? '';
+  textEl.value = params.get('t') ?? '';
+  replaceEl.value = params.get('r') ?? '';
+  const f = params.get('f') ?? '';
+  flagEls.forEach((el) => {
+    el.checked = f.includes(el.value);
+  });
+}
+
 function renderList(matches: MatchInfo[]) {
   listEl.replaceChildren();
   matches.forEach((m, i) => {
@@ -46,6 +68,8 @@ function renderList(matches: MatchInfo[]) {
 }
 
 function update() {
+  saveToHash();
+
   const text = textEl.value;
   const flags = currentFlags();
   const res = buildRegex(patternEl.value, flags);
@@ -84,4 +108,5 @@ presetEl.addEventListener('change', () => {
   update();
 });
 
+loadFromHash();
 update();
